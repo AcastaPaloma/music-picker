@@ -13,17 +13,16 @@ import { useRouter } from 'next/navigation'
 
 
 const Landing = () => {
-  const auth = getAuth(app)
+  const auth = getAuth(app);
   const router = useRouter();
-
-  // Is a user in session
   const { user, loading } = useUser();
 
   useEffect(() => {
+    if (!auth) return;
     if (!loading && !user) {
       router.push("/login");
     }
-  }, [user, loading]);
+  }, [auth, user, loading, router]);
   
   return (
       <main>

@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/password-input"
 
 /// ========== Firebase ========== //
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
@@ -46,7 +46,7 @@ const formSchema = z.object({
   password: z.string()
 });
 
-export default function Login() {
+export default function SignUp() {
   const auth = getAuth();
   const router = useRouter();
 
@@ -56,16 +56,16 @@ export default function Login() {
   })
 
   function onSubmit(values: z.infer < typeof formSchema > ) {
-    signInWithEmailAndPassword(auth, values.email, values.password)
+    createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        // Signed in 
+        // Signed up 
         const user = userCredential.user;
-        router.push('/')
-        // ...
+        router.push("/")
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        // ..
       });
   }
 
@@ -107,7 +107,7 @@ export default function Login() {
           )}
         />
         
-        <Button type="submit">Log In</Button>
+        <Button type="submit">Create account</Button>
       </form>
     </Form>
   )
