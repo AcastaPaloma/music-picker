@@ -38,12 +38,12 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Find songs",
     url: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
+    title: "My portfolio",
     url: "#",
     icon: Calendar,
   },
